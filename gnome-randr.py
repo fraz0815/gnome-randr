@@ -150,7 +150,9 @@ def trans_needs_w_h_swap(old_trans, new_trans):
 
 def mode_id_to_vals(mode_id):
     w, h_rate = mode_id.split('x')
-    h, rate = h_rate.split('@')
+    # rsplit added for interlaced resolution
+    full_h, rate = h_rate.split('@')
+    h = int("".join(full_h.rsplit('i')))
     return (int(w), int(h), float(rate))
 
 def find_best_matching_mode(monitors):
