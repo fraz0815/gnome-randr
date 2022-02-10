@@ -59,7 +59,8 @@ def get_pref_mode(monitor):
 
 def get_current_mode(monitor):
     for md in monitor[1]:
-        if 'is-current' in md[6]:
+        #test : added "or 'is-preferred' in md[6]" to prevent breaking when there is no current-mode active
+        if 'is-current' in md[6] or 'is-preferred' in md[6]:
             return md
 
 def has_scale(scale, mode):
